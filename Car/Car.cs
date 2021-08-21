@@ -35,10 +35,18 @@ namespace CarNS
                 * otherwise, if miles is not greater than maxDistance,
                 * then milesAbleToTravel = miles
                 */
-            double milesAbleToTravel = miles > maxDistance ? maxDistance : miles;
+            double milesAbleToTravel = miles > maxDistance ? maxDistance : miles; //if miles > maxDistance milesAbleToTravel will be maxDistance, else it will be miles
             double gallonsUsed = milesAbleToTravel / MilesPerGallon;
             GasTankLevel -= gallonsUsed;
             Odometer += milesAbleToTravel;
+        }
+        public void AddGas(double gas)
+        {
+            GasTankLevel += gas;
+            if (GasTankLevel > GasTankSize)
+            {
+                throw new ArgumentOutOfRangeException("Can't exceed tank size");
+            }
         }
 
     }
